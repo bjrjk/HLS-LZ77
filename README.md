@@ -1,5 +1,5 @@
 # HLS-LZ77
-**This is a repo of HLS Implementation of LZ77 Data Compression Algorithm, which is a project for *The 2nd winter camp of domain-oriented customized computing* (*2020 Xilinx Winter Camp*).**
+**This is a repo of HLS Implementation of LZ77 Data Compression Algorithm, which is a project for *The 2nd winter camp of domain-oriented customized computing* (*2021 Xilinx Winter Camp*).**
 
 **The project is under development.**
 
