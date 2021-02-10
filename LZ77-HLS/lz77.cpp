@@ -13,6 +13,7 @@ const char LZ77_ESCAPE_CHAR = '\\';
 const char LZ77_SPLIT_CHAR = '\0';
 
 static inline int putEscapedChar(FIFO_Array_UC_BUF& arr, unsigned char c, bool ctrl = false) {
+#pragma HLS INLINE
 	if (ctrl) {
 		arr.push_back(LZ77_ESCAPE_CHAR);
 		return 1;
@@ -29,6 +30,7 @@ static inline int putEscapedChar(FIFO_Array_UC_BUF& arr, unsigned char c, bool c
 }
 static inline unsigned char readEscapedChar(FIFO_Array_UC_BUF& arr, int& i,
 	bool& ctrl, bool modifyIndex = true) {
+#pragma HLS INLINE
 	if (arr[i] == LZ77_ESCAPE_CHAR && (i + 1 >= arr.size() || arr[i + 1] != LZ77_ESCAPE_CHAR)) {
 		if (modifyIndex){
 			i++;
@@ -66,6 +68,7 @@ static inline void getLongestMatchingPhrase(const FIFO_Array_UC_BUF& data,
 		winIter < min(windowStart + LZ77_WINDOW_SIZE, data.size());
 		winIter++) {
 		for (int bufIter = bufferStart; bufIter < min(bufferStart + LZ77_BUFFER_SIZE, data.size()); bufIter++) {
+#pragma HLS UNROLL factor=16
 			int tmpPhrasePos = bufIter - bufferStart;
 			if (winIter + tmpPhrasePos >= min(windowStart + LZ77_WINDOW_SIZE, data.size()))break;
 			if (data[winIter + tmpPhrasePos] != data[bufIter])break;
@@ -79,20 +82,24 @@ static inline void getLongestMatchingPhrase(const FIFO_Array_UC_BUF& data,
 		}
 	}
 }
-static inline void sizet2bytes(int num, unsigned char bytes[4]) { //Little Endian
+static inline void sizet2bytes(int num, unsigned char bytes[4]) {  //Little Endian
+#pragma HLS INLINE
 	unsigned char* ptr = reinterpret_cast<unsigned char*>(&num);
 #ifndef __SYNTHESIS__
 	assert(sizeof(int) == 4);
 #endif
 	for (int i = 0; i < sizeof(int); i++) {
+#pragma HLS UNROLL
 		bytes[i] = *ptr;
 		ptr++;
 	}
 }
 static inline int bytes2sizet(const FIFO_Array_UC_BUF& data, int startIndex) {
+#pragma HLS INLINE
 	int result;
 	unsigned char* ptr = reinterpret_cast<unsigned char*>(&result);
 	for (int i = 0; i < sizeof(int); i++) {
+#pragma HLS UNROLL
 		*ptr = data[startIndex + i];
 		ptr++;
 	}
