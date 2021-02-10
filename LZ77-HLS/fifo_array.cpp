@@ -8,11 +8,11 @@
 #include <hls_stream.h>
 
 // arrayLen must be a power of 2
-template <typename T, unsigned int arrayLen>
+template <typename T, int arrayLen>
 class FIFO_Array{
 private:
 	T arr[arrayLen];
-	unsigned int readIndex, writeIndex, streamSize;
+	int readIndex, writeIndex, streamSize;
 	hls::stream<T>& stream_fifo;
 public:
 	FIFO_Array(hls::stream<T>& stream_fifo):
@@ -31,15 +31,15 @@ public:
 		printf("Read_FIFO_Array Constructor£º %x\n",&stream_fifo);
 #endif
 	}
-	const T& operator [] (unsigned int i) const{
+	const T& operator [] (int i) const{
 #ifndef __SYNTHESIS__
 		assert(readIndex <= i && i < readIndex + arrayLen);
 #endif
 		return arr[i % arrayLen];
 	}
-	T& operator [] (unsigned int i){
+	T& operator [] (int i){
 #ifndef __SYNTHESIS__
-		assert(readIndex <= i && i < readIndex + arrayLen);
+		assert(0 <= i && readIndex - arrayLen <= i && i < readIndex + arrayLen);
 #endif
 		return arr[i % arrayLen];
 	}
@@ -72,6 +72,22 @@ write_loop:
 		}
 		writeIndex += size;
 		readIndex += size;
+	}
+	int size() const{
+		return streamSize;
+	}
+	unsigned int write_size() const{
+		return writeIndex;
+	}
+	void push_back(const T& elem){
+		arr[writeIndex] = elem;
+		write(1);
+	}
+	void insert_back(const T* begin, const T* end){
+		while(begin<end){
+			push_back(*begin);
+			begin++;
+		}
 	}
 };
 
