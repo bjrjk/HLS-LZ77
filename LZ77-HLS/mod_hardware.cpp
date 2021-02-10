@@ -1,5 +1,5 @@
 #include "mod_hardware.h"
 
-int mod_test(int x, int y){
+int MOD(int x, int y){
 	return x%y;
 }
