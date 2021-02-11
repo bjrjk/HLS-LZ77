@@ -1,0 +1,9 @@
+LZ77-Vivado.cache
+LZ77-Vivado.hw
+LZ77-Vivado.ip_user_files
+LZ77-Vivado.runs
+LZ77-Vivado.sim
+*.log
+.metadata
+.sdk
+RemoteSystemsTempFiles
