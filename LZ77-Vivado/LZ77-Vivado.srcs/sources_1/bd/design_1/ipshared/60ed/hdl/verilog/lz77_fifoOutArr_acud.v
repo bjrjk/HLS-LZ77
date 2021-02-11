@@ -1,12 +1,12 @@
 // ==============================================================
-// File generated on Thu Feb 11 11:55:32 +0800 2021
+// File generated on Thu Feb 11 18:56:11 +0800 2021
 // Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
 // SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
 // IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // ==============================================================
 `timescale 1 ns / 1 ps
-module lz77_fifoOutArr_arr_ram (addr0, ce0, d0, we0, q0,  clk);
+module lz77_fifoOutArr_acud_ram (addr0, ce0, d0, we0, q0,  clk);
 
 parameter DWIDTH = 8;
 parameter AWIDTH = 13;
@@ -40,7 +40,7 @@ end
 endmodule
 
 `timescale 1 ns / 1 ps
-module lz77_fifoOutArr_arr(
+module lz77_fifoOutArr_acud(
     reset,
     clk,
     address0,
@@ -62,7 +62,7 @@ output[DataWidth - 1:0] q0;
 
 
 
-lz77_fifoOutArr_arr_ram lz77_fifoOutArr_arr_ram_U(
+lz77_fifoOutArr_acud_ram lz77_fifoOutArr_acud_ram_U(
     .clk( clk ),
     .addr0( address0 ),
     .ce0( ce0 ),

@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:hls:lz77:1.0
-// IP Revision: 2102111202
+// IP Revision: 2102111858
 
 `timescale 1ns/1ps
 
@@ -75,12 +75,18 @@ module design_1_lz77_0_2 (
   ap_clk,
   ap_rst_n,
   interrupt,
-  streamIn_V_TVALID,
-  streamIn_V_TREADY,
-  streamIn_V_TDATA,
-  streamOut_V_TVALID,
-  streamOut_V_TREADY,
-  streamOut_V_TDATA
+  streamIn_TVALID,
+  streamIn_TREADY,
+  streamIn_TDATA,
+  streamIn_TLAST,
+  streamIn_TKEEP,
+  streamIn_TSTRB,
+  streamOut_TVALID,
+  streamOut_TREADY,
+  streamOut_TDATA,
+  streamOut_TLAST,
+  streamOut_TKEEP,
+  streamOut_TSTRB
 );
 
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_AXILiteS AWADDR" *)
@@ -119,8 +125,8 @@ output wire s_axi_AXILiteS_RVALID;
 ID_WIDTH 0, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 s_axi_AXILiteS RREADY" *)
 input wire s_axi_AXILiteS_RREADY;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ap_clk, ASSOCIATED_BUSIF s_axi_AXILiteS:streamIn_V:streamOut_V, ASSOCIATED_RESET ap_rst_n, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {CLK {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 1} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0}}}}, FREQ_HZ 50000000, P\
-HASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ap_clk, ASSOCIATED_BUSIF s_axi_AXILiteS:streamIn:streamOut, ASSOCIATED_RESET ap_rst_n, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {CLK {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 1} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0}}}}, FREQ_HZ 50000000, PHASE\
+ 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 ap_clk CLK" *)
 input wire ap_clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME ap_rst_n, POLARITY ACTIVE_LOW, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {RST {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 1} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0}}}}, INSERT_VIP 0" *)
@@ -129,22 +135,33 @@ input wire ap_rst_n;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME interrupt, SENSITIVITY LEVEL_HIGH, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {INTERRUPT {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 1} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0}}}}, PortWidth 1" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 interrupt INTERRUPT" *)
 output wire interrupt;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn_V TVALID" *)
-input wire streamIn_V_TVALID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn_V TREADY" *)
-output wire streamIn_V_TREADY;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME streamIn_V, TDATA_NUM_BYTES 1, TUSER_WIDTH 0, LAYERED_METADATA undef, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn_V TDATA" *)
-input wire [7 : 0] streamIn_V_TDATA;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut_V TVALID" *)
-output wire streamOut_V_TVALID;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut_V TREADY" *)
-input wire streamOut_V_TREADY;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME streamOut_V, TDATA_NUM_BYTES 1, TUSER_WIDTH 0, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {CLK {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 1} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0}}} TDATA {datatype {name {attribs {resolve_type immediate dependency\
- {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 8} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool minimum {} maximum {}} value false}}}} TDATA_WIDTH 8}, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 50000000, PHASE 0.000, CLK_DO\
-MAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut_V TDATA" *)
-output wire [7 : 0] streamOut_V_TDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn TVALID" *)
+input wire streamIn_TVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn TREADY" *)
+output wire streamIn_TREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn TDATA" *)
+input wire [7 : 0] streamIn_TDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn TLAST" *)
+input wire [0 : 0] streamIn_TLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn TKEEP" *)
+input wire [0 : 0] streamIn_TKEEP;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME streamIn, TDATA_NUM_BYTES 1, TUSER_WIDTH 0, LAYERED_METADATA undef, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamIn TSTRB" *)
+input wire [0 : 0] streamIn_TSTRB;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut TVALID" *)
+output wire streamOut_TVALID;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut TREADY" *)
+input wire streamOut_TREADY;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut TDATA" *)
+output wire [7 : 0] streamOut_TDATA;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut TLAST" *)
+output wire [0 : 0] streamOut_TLAST;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut TKEEP" *)
+output wire [0 : 0] streamOut_TKEEP;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME streamOut, TDATA_NUM_BYTES 1, TUSER_WIDTH 0, LAYERED_METADATA xilinx.com:interface:datatypes:1.0 {CLK {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value {}} bitwidth {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 1} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0}}}}, TDEST_WIDTH 0, TID_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP \
+1, HAS_TLAST 1, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 streamOut TSTRB" *)
+output wire [0 : 0] streamOut_TSTRB;
 
   lz77 #(
     .C_S_AXI_AXILITES_ADDR_WIDTH(6),
@@ -170,11 +187,17 @@ output wire [7 : 0] streamOut_V_TDATA;
     .ap_clk(ap_clk),
     .ap_rst_n(ap_rst_n),
     .interrupt(interrupt),
-    .streamIn_V_TVALID(streamIn_V_TVALID),
-    .streamIn_V_TREADY(streamIn_V_TREADY),
-    .streamIn_V_TDATA(streamIn_V_TDATA),
-    .streamOut_V_TVALID(streamOut_V_TVALID),
-    .streamOut_V_TREADY(streamOut_V_TREADY),
-    .streamOut_V_TDATA(streamOut_V_TDATA)
+    .streamIn_TVALID(streamIn_TVALID),
+    .streamIn_TREADY(streamIn_TREADY),
+    .streamIn_TDATA(streamIn_TDATA),
+    .streamIn_TLAST(streamIn_TLAST),
+    .streamIn_TKEEP(streamIn_TKEEP),
+    .streamIn_TSTRB(streamIn_TSTRB),
+    .streamOut_TVALID(streamOut_TVALID),
+    .streamOut_TREADY(streamOut_TREADY),
+    .streamOut_TDATA(streamOut_TDATA),
+    .streamOut_TLAST(streamOut_TLAST),
+    .streamOut_TKEEP(streamOut_TKEEP),
+    .streamOut_TSTRB(streamOut_TSTRB)
   );
 endmodule

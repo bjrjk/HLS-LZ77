@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Thu Feb 11 14:29:35 2021
+-- Date        : Thu Feb 11 20:16:14 2021
 -- Host        : DESKTOP-7EJIO30 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               D:/Programming/Github/HLS-LZ77/LZ77-Vivado/LZ77-Vivado.srcs/sources_1/bd/design_1/ip/design_1_axi_dma_0_1/design_1_axi_dma_0_1_stub.vhdl

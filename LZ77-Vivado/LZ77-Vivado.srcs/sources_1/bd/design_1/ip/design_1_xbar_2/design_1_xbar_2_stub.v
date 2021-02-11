@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
 // Date        : Wed Feb 10 18:41:42 2021
 // Host        : DESKTOP-7EJIO30 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               d:/Programming/Github/HLS-LZ77/LZ77-Vivado/LZ77-Vivado.srcs/sources_1/bd/design_1/ip/design_1_xbar_2/design_1_xbar_2_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top design_1_xbar_2 -prefix
+//               design_1_xbar_2_ design_1_xbar_2_stub.v
 // Design      : design_1_xbar_2
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-2

@@ -190,7 +190,7 @@ proc create_hier_cell_switchboards { parentCell nameHier } {
    CONFIG.M_PIPELINES {1} \
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {3} \
-   CONFIG.PAYLD_WIDTH {140} \
+   CONFIG.PAYLD_WIDTH {138} \
    CONFIG.S_LATENCY {0} \
    CONFIG.S_PIPELINES {0} \
  ] $ar_switchboard
@@ -204,7 +204,7 @@ proc create_hier_cell_switchboards { parentCell nameHier } {
    CONFIG.M_PIPELINES {1} \
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {3} \
-   CONFIG.PAYLD_WIDTH {140} \
+   CONFIG.PAYLD_WIDTH {138} \
    CONFIG.S_LATENCY {0} \
    CONFIG.S_PIPELINES {0} \
  ] $aw_switchboard
@@ -218,7 +218,7 @@ proc create_hier_cell_switchboards { parentCell nameHier } {
    CONFIG.M_PIPELINES {1} \
    CONFIG.NUM_MI {3} \
    CONFIG.NUM_SI {1} \
-   CONFIG.PAYLD_WIDTH {8} \
+   CONFIG.PAYLD_WIDTH {7} \
    CONFIG.S_LATENCY {0} \
    CONFIG.S_PIPELINES {0} \
  ] $b_switchboard
@@ -232,7 +232,7 @@ proc create_hier_cell_switchboards { parentCell nameHier } {
    CONFIG.M_PIPELINES {1} \
    CONFIG.NUM_MI {3} \
    CONFIG.NUM_SI {1} \
-   CONFIG.PAYLD_WIDTH {86} \
+   CONFIG.PAYLD_WIDTH {85} \
    CONFIG.S_LATENCY {0} \
    CONFIG.S_PIPELINES {0} \
  ] $r_switchboard
@@ -335,7 +335,7 @@ proc create_hier_cell_s02_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {3} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {8} \
    CONFIG.M01_NUM_BYTES {8} \
    CONFIG.M02_NUM_BYTES {8} \
@@ -357,7 +357,7 @@ proc create_hier_cell_s02_nodes { parentCell nameHier } {
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_OUTSTANDING {16} \
    CONFIG.NUM_SI {1} \
-   CONFIG.PAYLD_WIDTH {140} \
+   CONFIG.PAYLD_WIDTH {138} \
    CONFIG.S00_NUM_BYTES {4} \
    CONFIG.S01_NUM_BYTES {4} \
    CONFIG.S02_NUM_BYTES {4} \
@@ -385,7 +385,7 @@ proc create_hier_cell_s02_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {4} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {4} \
    CONFIG.M01_NUM_BYTES {4} \
    CONFIG.M02_NUM_BYTES {4} \
@@ -407,7 +407,7 @@ proc create_hier_cell_s02_nodes { parentCell nameHier } {
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_OUTSTANDING {16} \
    CONFIG.NUM_SI {1} \
-   CONFIG.PAYLD_WIDTH {8} \
+   CONFIG.PAYLD_WIDTH {7} \
    CONFIG.S00_NUM_BYTES {8} \
    CONFIG.S01_NUM_BYTES {8} \
    CONFIG.S02_NUM_BYTES {8} \
@@ -436,7 +436,7 @@ proc create_hier_cell_s02_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {1} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {8} \
    CONFIG.M01_NUM_BYTES {8} \
    CONFIG.M02_NUM_BYTES {8} \
@@ -575,13 +575,13 @@ proc create_hier_cell_s02_entry_pipeline { parentCell nameHier } {
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.HAS_BURST {0} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.IS_CASCADED {0} \
    CONFIG.LIMIT_READ_LENGTH {0} \
    CONFIG.LIMIT_WRITE_LENGTH {0} \
    CONFIG.MAX_RUSER_BITS_PER_BYTE {0} \
    CONFIG.MAX_WUSER_BITS_PER_BYTE {0} \
-   CONFIG.MEP_IDENTIFIER_WIDTH {2} \
+   CONFIG.MEP_IDENTIFIER_WIDTH {1} \
    CONFIG.MSC000_RDATA_WIDTH {64} \
    CONFIG.MSC000_WDATA_WIDTH {64} \
    CONFIG.NUM_MSC {1} \
@@ -606,8 +606,8 @@ proc create_hier_cell_s02_entry_pipeline { parentCell nameHier } {
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.IS_CASCADED {0} \
-   CONFIG.MEP_IDENTIFIER {2} \
-   CONFIG.MEP_IDENTIFIER_WIDTH {2} \
+   CONFIG.MEP_IDENTIFIER {1} \
+   CONFIG.MEP_IDENTIFIER_WIDTH {1} \
    CONFIG.NUM_READ_OUTSTANDING {2} \
    CONFIG.NUM_WRITE_OUTSTANDING {16} \
    CONFIG.RDATA_WIDTH {32} \
@@ -686,7 +686,7 @@ proc create_hier_cell_s01_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {2} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {8} \
    CONFIG.M01_NUM_BYTES {8} \
    CONFIG.M02_NUM_BYTES {8} \
@@ -708,7 +708,7 @@ proc create_hier_cell_s01_nodes { parentCell nameHier } {
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_OUTSTANDING {16} \
    CONFIG.NUM_SI {1} \
-   CONFIG.PAYLD_WIDTH {140} \
+   CONFIG.PAYLD_WIDTH {138} \
    CONFIG.S00_NUM_BYTES {4} \
    CONFIG.S01_NUM_BYTES {4} \
    CONFIG.S02_NUM_BYTES {4} \
@@ -736,7 +736,7 @@ proc create_hier_cell_s01_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {0} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {4} \
    CONFIG.M01_NUM_BYTES {4} \
    CONFIG.M02_NUM_BYTES {4} \
@@ -758,7 +758,7 @@ proc create_hier_cell_s01_nodes { parentCell nameHier } {
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_OUTSTANDING {16} \
    CONFIG.NUM_SI {1} \
-   CONFIG.PAYLD_WIDTH {86} \
+   CONFIG.PAYLD_WIDTH {85} \
    CONFIG.S00_NUM_BYTES {8} \
    CONFIG.S01_NUM_BYTES {8} \
    CONFIG.S02_NUM_BYTES {8} \
@@ -873,13 +873,13 @@ proc create_hier_cell_s01_entry_pipeline { parentCell nameHier } {
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.HAS_BURST {0} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.IS_CASCADED {0} \
    CONFIG.LIMIT_READ_LENGTH {0} \
    CONFIG.LIMIT_WRITE_LENGTH {0} \
    CONFIG.MAX_RUSER_BITS_PER_BYTE {0} \
    CONFIG.MAX_WUSER_BITS_PER_BYTE {0} \
-   CONFIG.MEP_IDENTIFIER_WIDTH {2} \
+   CONFIG.MEP_IDENTIFIER_WIDTH {1} \
    CONFIG.MSC000_RDATA_WIDTH {64} \
    CONFIG.MSC000_WDATA_WIDTH {64} \
    CONFIG.NUM_MSC {1} \
@@ -904,8 +904,8 @@ proc create_hier_cell_s01_entry_pipeline { parentCell nameHier } {
   set_property -dict [ list \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.IS_CASCADED {0} \
-   CONFIG.MEP_IDENTIFIER {1} \
-   CONFIG.MEP_IDENTIFIER_WIDTH {2} \
+   CONFIG.MEP_IDENTIFIER {0} \
+   CONFIG.MEP_IDENTIFIER_WIDTH {1} \
    CONFIG.NUM_READ_OUTSTANDING {16} \
    CONFIG.NUM_WRITE_OUTSTANDING {2} \
    CONFIG.RDATA_WIDTH {32} \
@@ -989,7 +989,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {2} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {8} \
    CONFIG.M01_NUM_BYTES {8} \
    CONFIG.M02_NUM_BYTES {8} \
@@ -1011,7 +1011,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_OUTSTANDING {16} \
    CONFIG.NUM_SI {3} \
-   CONFIG.PAYLD_WIDTH {140} \
+   CONFIG.PAYLD_WIDTH {138} \
    CONFIG.S00_NUM_BYTES {8} \
    CONFIG.S01_NUM_BYTES {8} \
    CONFIG.S02_NUM_BYTES {8} \
@@ -1039,7 +1039,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {3} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {8} \
    CONFIG.M01_NUM_BYTES {8} \
    CONFIG.M02_NUM_BYTES {8} \
@@ -1061,7 +1061,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_OUTSTANDING {16} \
    CONFIG.NUM_SI {3} \
-   CONFIG.PAYLD_WIDTH {140} \
+   CONFIG.PAYLD_WIDTH {138} \
    CONFIG.S00_NUM_BYTES {8} \
    CONFIG.S01_NUM_BYTES {8} \
    CONFIG.S02_NUM_BYTES {8} \
@@ -1089,7 +1089,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {4} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {8} \
    CONFIG.M01_NUM_BYTES {8} \
    CONFIG.M02_NUM_BYTES {8} \
@@ -1111,7 +1111,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.NUM_MI {3} \
    CONFIG.NUM_OUTSTANDING {16} \
    CONFIG.NUM_SI {1} \
-   CONFIG.PAYLD_WIDTH {8} \
+   CONFIG.PAYLD_WIDTH {7} \
    CONFIG.S00_NUM_BYTES {8} \
    CONFIG.S01_NUM_BYTES {8} \
    CONFIG.S02_NUM_BYTES {8} \
@@ -1138,7 +1138,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {0} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {8} \
    CONFIG.M01_NUM_BYTES {8} \
    CONFIG.M02_NUM_BYTES {8} \
@@ -1160,7 +1160,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.NUM_MI {3} \
    CONFIG.NUM_OUTSTANDING {16} \
    CONFIG.NUM_SI {1} \
-   CONFIG.PAYLD_WIDTH {86} \
+   CONFIG.PAYLD_WIDTH {85} \
    CONFIG.S00_NUM_BYTES {8} \
    CONFIG.S01_NUM_BYTES {8} \
    CONFIG.S02_NUM_BYTES {8} \
@@ -1188,7 +1188,7 @@ proc create_hier_cell_m00_nodes { parentCell nameHier } {
    CONFIG.ACLK_RELATIONSHIP {1} \
    CONFIG.ADDR_WIDTH {32} \
    CONFIG.CHANNEL {1} \
-   CONFIG.ID_WIDTH {2} \
+   CONFIG.ID_WIDTH {1} \
    CONFIG.M00_NUM_BYTES {8} \
    CONFIG.M01_NUM_BYTES {8} \
    CONFIG.M02_NUM_BYTES {8} \
@@ -1307,7 +1307,7 @@ proc create_hier_cell_m00_exit_pipeline { parentCell nameHier } {
    CONFIG.IS_CASCADED {0} \
    CONFIG.MAX_RUSER_BITS_PER_BYTE {0} \
    CONFIG.MAX_WUSER_BITS_PER_BYTE {0} \
-   CONFIG.MEP_IDENTIFIER_WIDTH {2} \
+   CONFIG.MEP_IDENTIFIER_WIDTH {1} \
    CONFIG.M_ARUSER_WIDTH {0} \
    CONFIG.M_AWUSER_WIDTH {0} \
    CONFIG.M_BUSER_WIDTH {0} \
@@ -1323,12 +1323,10 @@ proc create_hier_cell_m00_exit_pipeline { parentCell nameHier } {
    CONFIG.NUM_WRITE_OUTSTANDING {16} \
    CONFIG.RDATA_WIDTH {64} \
    CONFIG.READ_WRITE_MODE {READ_WRITE} \
-   CONFIG.SSC000_ROUTE {0b000} \
-   CONFIG.SSC001_ROUTE {0b010} \
-   CONFIG.SSC002_ROUTE {0b100} \
-   CONFIG.SSC003_ROUTE {0b000} \
+   CONFIG.SSC000_ROUTE {0b010} \
+   CONFIG.SSC001_ROUTE {0b100} \
    CONFIG.SSC_ROUTE_WIDTH {3} \
-   CONFIG.S_ID_WIDTH {2} \
+   CONFIG.S_ID_WIDTH {1} \
    CONFIG.WDATA_WIDTH {64} \
  ] $m00_exit
 
@@ -1497,7 +1495,7 @@ proc create_root_design { parentCell } {
   set m00_sc2axi [ create_bd_cell -type ip -vlnv xilinx.com:ip:sc_sc2axi:1.0 m00_sc2axi ]
   set_property -dict [ list \
    CONFIG.AXI_ADDR_WIDTH {32} \
-   CONFIG.AXI_ID_WIDTH {2} \
+   CONFIG.AXI_ID_WIDTH {1} \
    CONFIG.AXI_RDATA_WIDTH {64} \
    CONFIG.AXI_WDATA_WIDTH {64} \
    CONFIG.MSC_ROUTE_WIDTH {1} \
@@ -1506,7 +1504,7 @@ proc create_root_design { parentCell } {
    CONFIG.SC_ARUSER_WIDTH {0} \
    CONFIG.SC_AWUSER_WIDTH {0} \
    CONFIG.SC_BUSER_WIDTH {0} \
-   CONFIG.SC_ID_WIDTH {2} \
+   CONFIG.SC_ID_WIDTH {1} \
    CONFIG.SC_RDATA_WIDTH {64} \
    CONFIG.SC_RUSER_BITS_PER_BYTE {0} \
    CONFIG.SC_WDATA_WIDTH {64} \
@@ -1518,7 +1516,7 @@ proc create_root_design { parentCell } {
   set s01_axi2sc [ create_bd_cell -type ip -vlnv xilinx.com:ip:sc_axi2sc:1.0 s01_axi2sc ]
   set_property -dict [ list \
    CONFIG.AXI_ADDR_WIDTH {32} \
-   CONFIG.AXI_ID_WIDTH {2} \
+   CONFIG.AXI_ID_WIDTH {1} \
    CONFIG.AXI_RDATA_WIDTH {32} \
    CONFIG.AXI_WDATA_WIDTH {32} \
    CONFIG.MSC_ROUTE_WIDTH {1} \
@@ -1527,7 +1525,7 @@ proc create_root_design { parentCell } {
    CONFIG.SC_ARUSER_WIDTH {0} \
    CONFIG.SC_AWUSER_WIDTH {0} \
    CONFIG.SC_BUSER_WIDTH {0} \
-   CONFIG.SC_ID_WIDTH {2} \
+   CONFIG.SC_ID_WIDTH {1} \
    CONFIG.SC_RDATA_WIDTH {64} \
    CONFIG.SC_RUSER_BITS_PER_BYTE {0} \
    CONFIG.SC_WDATA_WIDTH {64} \
@@ -1545,7 +1543,7 @@ proc create_root_design { parentCell } {
   set s02_axi2sc [ create_bd_cell -type ip -vlnv xilinx.com:ip:sc_axi2sc:1.0 s02_axi2sc ]
   set_property -dict [ list \
    CONFIG.AXI_ADDR_WIDTH {32} \
-   CONFIG.AXI_ID_WIDTH {2} \
+   CONFIG.AXI_ID_WIDTH {1} \
    CONFIG.AXI_RDATA_WIDTH {32} \
    CONFIG.AXI_WDATA_WIDTH {32} \
    CONFIG.MSC_ROUTE_WIDTH {1} \
@@ -1554,7 +1552,7 @@ proc create_root_design { parentCell } {
    CONFIG.SC_ARUSER_WIDTH {0} \
    CONFIG.SC_AWUSER_WIDTH {0} \
    CONFIG.SC_BUSER_WIDTH {0} \
-   CONFIG.SC_ID_WIDTH {2} \
+   CONFIG.SC_ID_WIDTH {1} \
    CONFIG.SC_RDATA_WIDTH {64} \
    CONFIG.SC_RUSER_BITS_PER_BYTE {0} \
    CONFIG.SC_WDATA_WIDTH {64} \

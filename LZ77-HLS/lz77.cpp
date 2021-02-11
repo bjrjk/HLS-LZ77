@@ -112,8 +112,8 @@ static void writeCtrlData(FIFO_Array_UC_BUF& data,
 	sizet2bytes(phraseLength, phraseLengthBytes);
 	putEscapedChar(data, LZ77_ESCAPE_CHAR, true);
 	putEscapedChar(data, LZ77_SPLIT_CHAR);
-	data.insert_back(phraseStartBytes, phraseStartBytes + 4);
-	data.insert_back(phraseLengthBytes, phraseLengthBytes + 4);
+	for(int i=0;i<4;i++) data.push_back(phraseStartBytes[i]);
+	for(int i=0;i<4;i++) data.push_back(phraseLengthBytes[i]);
 	if (firstCExists)putEscapedChar(data, firstC);
 	else {
 		putEscapedChar(data, LZ77_ESCAPE_CHAR + 1);
@@ -162,6 +162,7 @@ unsigned int lz77_compress(FIFO_Array_UC_BUF& origin, FIFO_Array_UC_BUF& compres
 		windowStart += phraseLength + 1;
 		bufferStart += phraseLength + 1;
 	}
+	compression.write_eof();
 	return compression.write_size();
 }
 unsigned int lz77_decompress(FIFO_Array_UC_BUF& compression, FIFO_Array_UC_BUF& origin) {
@@ -187,23 +188,24 @@ unsigned int lz77_decompress(FIFO_Array_UC_BUF& compression, FIFO_Array_UC_BUF& 
 		}
 		if (firstCExists)origin.push_back(c);
 	}
+	origin.write_eof();
 	return origin.write_size();
 }
 unsigned int lz77(
 		bool optype, // optype==false: compress; optype==true: decompress
-		hls::stream<unsigned char>& streamIn,
-		hls::stream<unsigned char>& streamOut,
+		hls::stream<stream_t>& streamIn,
+		hls::stream<stream_t>& streamOut,
 		int streamInSize
 		){
 #pragma HLS INTERFACE s_axilite port=return
 #pragma HLS INTERFACE s_axilite port=streamInSize
 #pragma HLS INTERFACE s_axilite port=optype
-#pragma HLS INTERFACE axis register port=streamOut
-#pragma HLS INTERFACE axis register port=streamIn
+#pragma HLS INTERFACE axis register both port=streamOut
+#pragma HLS INTERFACE axis register both port=streamIn
 	FIFO_Array_UC_BUF fifoInArr(streamIn, streamInSize);
 	FIFO_Array_UC_BUF fifoOutArr(streamOut);
 	if(!optype)
-		return lz77_compress(fifoInArr, fifoOutArr);
+		return lz77_compress(fifoInArr, fifoOutArr) - 1;
 	else
-		return lz77_decompress(fifoInArr, fifoOutArr);
+		return lz77_decompress(fifoInArr, fifoOutArr) - 1;
 }

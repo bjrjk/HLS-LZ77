@@ -54,70 +54,6 @@ int fifo_array_test_2(){
 			return 1;
 	return 0;
 }
-int lz77_test_1(){
-	unsigned char data_origin[] = "12341234";
-	unsigned char data_read[100];
-	unsigned char data_decom[100];
-	hls::stream<unsigned char> streamComIn("streamComIn"), streamComOut("streamComOut");
-	for(int i=0;i<sizeof(data_origin);i++)
-		streamComIn << data_origin[i];
-	unsigned int sizeCom = lz77(
-			false, // optype==false: compress; optype==true: decompress
-			streamComIn,
-			streamComOut,
-			sizeof(data_origin)
-	);
-	for(int i=0;i<sizeCom;i++)
-		streamComOut >> data_read[i];
-	hls::stream<unsigned char> streamDeComIn("streamDeComIn"), streamDeComOut("streamDeComOut");
-	for(int i=0;i<sizeCom;i++)
-		streamDeComIn << data_read[i];
-	unsigned int sizeDecom = lz77(
-			true, // optype==false: compress; optype==true: decompress
-			streamDeComIn,
-			streamDeComOut,
-			sizeCom
-	);
-	for(int i=0;i<sizeDecom;i++)
-		streamDeComOut >> data_decom[i];
-	if(sizeof(data_origin) != sizeDecom)return 2;
-	for(int i=0;i<sizeof(data_origin);i++)
-		if(data_origin[i] != data_decom[i])
-			return 1;
-	return 0;
-}
-int lz77_test_2(){
-	unsigned char data_origin[] = "1234123\\\n\t14!!^^&\\\\\\";
-	unsigned char data_read[100];
-	unsigned char data_decom[100];
-	hls::stream<unsigned char> streamComIn("streamComIn"), streamComOut("streamComOut");
-	for(int i=0;i<sizeof(data_origin);i++)
-		streamComIn << data_origin[i];
-	unsigned int sizeCom = lz77(
-			false, // optype==false: compress; optype==true: decompress
-			streamComIn,
-			streamComOut,
-			sizeof(data_origin)
-	);
-	for(int i=0;i<sizeCom;i++)
-		streamComOut >> data_read[i];
-	hls::stream<unsigned char> streamDeComIn("streamDeComIn"), streamDeComOut("streamDeComOut");
-	for(int i=0;i<sizeCom;i++)
-		streamDeComIn << data_read[i];
-	unsigned int sizeDecom = lz77(
-			true, // optype==false: compress; optype==true: decompress
-			streamDeComIn,
-			streamDeComOut,
-			sizeCom
-	);
-	for(int i=0;i<sizeDecom;i++)
-		streamDeComOut >> data_decom[i];
-	if(sizeof(data_origin) != sizeDecom)return 2;
-	for(int i=0;i<sizeof(data_origin);i++)
-		if(data_origin[i] != data_decom[i])
-			return 1;
-	return 0;
-}
 void readBin(string fileName, vector<unsigned char>& data) {
 	ifstream f(fileName, ios::binary);
 	char c;
@@ -135,53 +71,27 @@ bool cmpBin(const vector<unsigned char>& data1, const vector<unsigned char>& dat
 	}
 	return true;
 }
-int lz77_test_3(){
-	unsigned char data_origin[] = "1234123\\\n\t14!!^^&\\\\\\~772ge7hd)((*U--  8juew##$#$%&**^^* yguewbfuj";
-	unsigned char data_read[1000];
-	unsigned char data_decom[1000];
-	hls::stream<unsigned char> streamComIn("streamComIn"), streamComOut("streamComOut");
-	for(int i=0;i<sizeof(data_origin);i++)
-		streamComIn << data_origin[i];
-	unsigned int sizeCom = lz77(
-			false, // optype==false: compress; optype==true: decompress
-			streamComIn,
-			streamComOut,
-			sizeof(data_origin)
-	);
-	for(int i=0;i<sizeCom;i++)
-		streamComOut >> data_read[i];
-	hls::stream<unsigned char> streamDeComIn("streamDeComIn"), streamDeComOut("streamDeComOut");
-	for(int i=0;i<sizeCom;i++)
-		streamDeComIn << data_read[i];
-	unsigned int sizeDecom = lz77(
-			true, // optype==false: compress; optype==true: decompress
-			streamDeComIn,
-			streamDeComOut,
-			sizeCom
-	);
-	for(int i=0;i<sizeDecom;i++)
-		streamDeComOut >> data_decom[i];
-	if(sizeof(data_origin) != sizeDecom)return 2;
-	for(int i=0;i<sizeof(data_origin);i++)
-		if(data_origin[i] != data_decom[i])
-			return 1;
-	return 0;
-}
 int lz77_cosimu_test_zip(){
 	unsigned char data_origin[] = "12341234";
 	unsigned char data_std[]="\x31\x32\x33\x34\x5C\x00\xFC\x0F\x00\x00\x04\x00\x00\x00\x5D\x5D\x00\x5C";
 	unsigned char data_read[100];
-	hls::stream<unsigned char> streamComIn("streamComIn"), streamComOut("streamComOut");
-	for(int i=0;i<8;i++)
-		streamComIn << data_origin[i];
+	hls::stream<stream_t> streamComIn("streamComIn"), streamComOut("streamComOut");
+	for(int i=0;i<8;i++){
+		stream_t tmp;
+		tmp.data = data_origin[i];
+		streamComIn << tmp;
+	}
 	unsigned int sizeCom = lz77(
 			false, // optype==false: compress; optype==true: decompress
 			streamComIn,
 			streamComOut,
 			8
 	);
-	for(int i=0;i<sizeCom;i++)
-		streamComOut >> data_read[i];
+	for(int i=0;i<=sizeCom;i++){
+		stream_t tmp;
+		streamComOut >> tmp;
+		data_read[i] = tmp.data;
+	}
 	if(sizeof(data_std)-1 != sizeCom)return 2;
 	for(int i=0;i<sizeCom;i++)
 		if(data_read[i] != data_std[i])
@@ -192,17 +102,23 @@ int lz77_cosimu_test_unzip(){
 	unsigned char data_origin[] = "12341234";
 	unsigned char data_std[]="\x31\x32\x33\x34\x5C\x00\xFC\x0F\x00\x00\x04\x00\x00\x00\x5D\x5D\x00\x5C";
 	unsigned char data_read[100];
-	hls::stream<unsigned char> streamComIn("streamComIn"), streamComOut("streamComOut");
-	for(int i=0;i<sizeof(data_std)-1;i++)
-		streamComIn << data_std[i];
+	hls::stream<stream_t> streamComIn("streamComIn"), streamComOut("streamComOut");
+	for(int i=0;i<sizeof(data_std)-1;i++){
+		stream_t tmp;
+		tmp.data = data_std[i];
+		streamComIn << tmp;
+	}
 	unsigned int sizeDeCom = lz77(
 			true, // optype==false: compress; optype==true: decompress
 			streamComIn,
 			streamComOut,
 			sizeof(data_std)-1
 	);
-	for(int i=0;i<sizeDeCom;i++)
-		streamComOut >> data_read[i];
+	for(int i=0;i<=sizeDeCom;i++){
+		stream_t tmp;
+		streamComOut >> tmp;
+		data_read[i] = tmp.data;
+	}
 	if(sizeof(data_origin)-1 != sizeDeCom)return 2;
 	for(int i=0;i<sizeDeCom;i++)
 		if(data_read[i] != data_origin[i])
