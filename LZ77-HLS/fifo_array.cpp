@@ -33,7 +33,7 @@ public:
 	}
 	const T& operator [] (int i) const{
 #ifndef __SYNTHESIS__
-		assert(readIndex <= i && i < readIndex + arrayLen);
+		assert(0 <= i && readIndex - arrayLen <= i && i < readIndex + arrayLen);
 #endif
 		return arr[i % arrayLen];
 	}
@@ -87,6 +87,11 @@ write_loop:
 		while(begin<end){
 			push_back(*begin);
 			begin++;
+		}
+	}
+	void insert_back_self(int start, int end){
+		for(int i=start;i<end;i++){
+			push_back((*this)[i]);
 		}
 	}
 };

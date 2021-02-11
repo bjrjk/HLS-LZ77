@@ -175,9 +175,9 @@ unsigned int lz77_decompress(FIFO_Array_UC_BUF& compression, FIFO_Array_UC_BUF& 
 		readEscapedChar(compression, compressIndex, ctrl, false);
 		if (ctrl) {
 			readCtrlData(compression, compressIndex, phraseStart, phraseLength, c, firstCExists);
-			origin.insert_back(
-				&origin[windowStart + phraseStart],
-				&origin[windowStart + phraseStart + phraseLength]);
+			origin.insert_back_self(
+				windowStart + phraseStart,
+				windowStart + phraseStart + phraseLength);
 			windowStart += phraseLength + firstCExists;
 		}
 		else {
@@ -195,6 +195,9 @@ unsigned int lz77(
 		hls::stream<unsigned char>& streamOut,
 		int streamInSize
 		){
+#pragma HLS INTERFACE s_axilite port=return
+#pragma HLS INTERFACE s_axilite port=streamInSize
+#pragma HLS INTERFACE s_axilite port=optype
 #pragma HLS INTERFACE axis register port=streamOut
 #pragma HLS INTERFACE axis register port=streamIn
 	FIFO_Array_UC_BUF fifoInArr(streamIn, streamInSize);
