@@ -34,3 +34,15 @@ Vivado SDK: [LZ77-Vivado/LZ77-Vivado.sdk/LZ77-SDK/src/](LZ77-Vivado/LZ77-Vivado.
 
 ## Software Implementation
 x86 arch: [bjrjk/LZ77-Demo](https://github.com/bjrjk/LZ77-Demo)
+
+## Development Notes
+[Zynq 高层次综合HLS 项目开发经历(1) 概要](https://renjikai.com/zynq-hls-project-development-1/)
+
+[Zynq 高层次综合HLS 项目开发经历(2) LZ77 x86软件实现](https://renjikai.com/zynq-hls-project-development-2/)
+
+[Zynq 高层次综合HLS 项目开发经历(3) 代码移植及Vivado HLS的使用](https://renjikai.com/zynq-hls-project-development-3/)
+
+[Zynq 高层次综合HLS 项目开发经历(4) Vivado IP Integrator](https://renjikai.com/zynq-hls-project-development-4/)
+
+[Zynq 高层次综合HLS 项目开发经历(5) SDK UART串口及DMA代码](https://renjikai.com/zynq-hls-project-development-5/)
+
