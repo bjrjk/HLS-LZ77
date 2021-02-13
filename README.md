@@ -1,8 +1,6 @@
 # HLS-LZ77
 **This is a repo of HLS Implementation of LZ77 Data Compression Algorithm, which is a project for *The 2nd winter camp of domain-oriented customized computing* (*2021 Xilinx Winter Camp*).**
 
-**The project is under development.**
-
 ## Proposal of Project
 HLS-LZ77 is going to implement LZ77 data compression algorithm on Zynq-7000 FPGA using Vivado HLS. 
 
@@ -19,3 +17,20 @@ PS and PL will communicate via AXI (Advanced eXtensible Interface) Bus.
 - Vivado 2018.3
 - Vivado HLS 2018.3
 - Vivado SDK 2018.3
+
+## Project Achievements
+The project has achieved its desired results. LZ77 algorithm has been implemented on the PL side and software part is implemented in SDK. 
+
+Besides AXI Bus, DMA & AXIS is also used to interchange data between PS and PL.
+
+![Result](Images/1.png)
+
+## Sources
+Vivado HLS: [LZ77-HLS/](LZ77-HLS/)
+
+Vivado: [LZ77-Vivado/LZ77-Vivado.srcs/](LZ77-Vivado/LZ77-Vivado.srcs/)
+
+Vivado SDK: [LZ77-Vivado/LZ77-Vivado.sdk/LZ77-SDK/src/](LZ77-Vivado/LZ77-Vivado.sdk/LZ77-SDK/src/)
+
+## Software Implementation
+x86 arch: [bjrjk/LZ77-Demo](https://github.com/bjrjk/LZ77-Demo)
