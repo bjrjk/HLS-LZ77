@@ -138,7 +138,7 @@ public:
 	void init_load(){
 init_load_loop:
 		for(int i=0;i<std::min(arrayLen, streamSize);i++){
-#pragma HLS UNROLL factor=4
+#pragma HLS UNROLL factor=8
 			APINT_stream_t tmp;
 			stream_fifo >> tmp;
 			arr[i] = tmp.data;
@@ -151,7 +151,7 @@ init_load_loop:
 			size = streamSize - readIndex - arrayLen;
 load_loop:
 		for(int i=0;i<size;i++){
-#pragma HLS UNROLL factor=4
+#pragma HLS UNROLL factor=8
 			APINT_stream_t tmp;
 			stream_fifo >> tmp;
 			arr[(readIndex + i) % arrayLen] = tmp.data;
@@ -163,7 +163,7 @@ load_loop:
 		if(size > arrayLen)return;
 write_loop:
 		for(int i=0;i<size;i++){
-#pragma HLS UNROLL factor=4
+#pragma HLS UNROLL factor=8
 			APINT_stream_t tmp;
 			tmp.data = arr[(writeIndex + i) % arrayLen];
 			tmp.keep = 1;
@@ -186,12 +186,14 @@ write_loop:
 	}
 	void insert_back(const ap_int<intSize>* begin, const ap_int<intSize>* end){
 		while(begin<end){
+#pragma HLS UNROLL factor=8
 			push_back(*begin);
 			begin++;
 		}
 	}
 	void insert_back_self(int start, int end){
 		for(int i=start;i<end;i++){
+#pragma HLS UNROLL factor=8
 			push_back((*this)[i]);
 		}
 	}

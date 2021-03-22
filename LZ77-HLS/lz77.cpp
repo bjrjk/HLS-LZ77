@@ -68,7 +68,8 @@ static inline void getLongestMatchingPhrase(const FIFO_Array_UC_BUF& data,
 		winIter < min(windowStart + LZ77_WINDOW_SIZE, data.size());
 		winIter++) {
 		for (int bufIter = bufferStart; bufIter < min(bufferStart + LZ77_BUFFER_SIZE, data.size()); bufIter++) {
-#pragma HLS UNROLL factor=16
+#pragma HLS LOOP_FLATTEN
+#pragma HLS UNROLL factor=48
 			int tmpPhrasePos = bufIter - bufferStart;
 			if (winIter + tmpPhrasePos >= min(windowStart + LZ77_WINDOW_SIZE, data.size()))break;
 			if (data[winIter + tmpPhrasePos] != data[bufIter])break;
